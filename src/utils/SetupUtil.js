@@ -171,6 +171,7 @@ export default {
         }
 
         if (ip) {
+          console.log(ip)
           docker.setup(ip, machine.name());
           await docker.version();
         } else {

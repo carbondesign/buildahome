@@ -74,13 +74,21 @@ class StoriesStore {
 
   static all () {
     let state = this.getState();
-    let all = state.recommended.concat(state.stories).concat(state.results);
-    return _.uniq(all, false, stories => stories.namespace + '/' + stories.name);
+    let all = [
+      {"user":"kitematic","name":"hello-world-nginx","namespace":"kitematic","status":1,"description":"A light-weight nginx container that demonstrates the features of Kitematic","is_private":false,"is_automated":false,"can_edit":false,"star_count":52,"pull_count":475885,"last_updated":"2015-06-16T05:30:26.091578Z","has_starred":false,"full_description":"","permissions":{"read":true,"write":false,"admin":false},"is_recommended":true,"repo":"kitematic/hello-world-nginx","gradient_start":"#24B8EB","gradient_end":"#218CF4","img":"kitematic_html.png"}
+    ];
+    let uniqueStory = _.uniq(all, false,
+      stories => {
+        console.log(stories);
+        stories.namespace + '/' + stories.name
+      })
+
+    return uniqueStory
   }
 
   static loading () {
     let state = this.getState();
-    return state.recommendedLoading || state.resultsLoading || state.storiesLoading;
+    return false;
   }
 }
 

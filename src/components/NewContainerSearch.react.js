@@ -19,6 +19,7 @@ var _searchPromise = null;
 module.exports = React.createClass({
   mixins: [Router.Navigation, Router.State],
   getInitialState: function () {
+    console.log(storiesStore.all())
     return {
       query: '',
 
@@ -38,6 +39,7 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function () {
+
     this.refs.searchInput.getDOMNode().focus();
 
     storiesStore.listen(this.update);
@@ -46,6 +48,7 @@ module.exports = React.createClass({
     storiesActions.search();
   },
   componentWillUnmount: function () {
+
     if (_searchPromise) {
       _searchPromise.cancel();
     }
@@ -58,7 +61,7 @@ module.exports = React.createClass({
     this.setState({
 
       loading: storiesStore.loading(),
-      repos: storiesStore.all(),
+      stories: storiesStore.all(),
       currentPage: storiesStore.getState().currentPage,
       totalPage: storiesStore.getState().totalPage,
       previousPage: storiesStore.getState().previousPage,
@@ -124,9 +127,9 @@ module.exports = React.createClass({
     this.setState({error: null});
 
     // If we're clicking on the filter again - refresh
-    if (filter === 'userrepos' && this.getQuery().filter === 'userrepos') {
+    if (filter === 'userstories' && this.getQuery().filter === 'userstories') {
 
-      storiesActions.repos();
+      storiesActions.stories();
     }
 
     if (filter === 'userimages' && this.getQuery().filter === 'userimages') {
@@ -152,14 +155,14 @@ module.exports = React.createClass({
   },
   render: function () {
     let filter = this.getQuery().filter || 'all';
-    let repos = _.values(this.state.repos)
+    let stories = _.values(this.state.stories)
         .filter(repo => {
           if (repo.is_recommended || repo.is_user_repo) {
             return repo.name.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1 || repo.namespace.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
           }
           return true;
         })
-        .filter(repo => filter === 'all' || (filter === 'recommended' && repo.is_recommended) || (filter === 'userrepos' && repo.is_user_repo));
+        .filter(repo => filter === 'all' || (filter === 'recommended' && repo.is_recommended) || (filter === 'userstories' && repo.is_user_repo));
 
     let results, paginateResults;
     let previous = [];
@@ -228,15 +231,15 @@ module.exports = React.createClass({
         </div>
       );
       paginateResults = null;
-    } else if (filter === 'userrepos' && !accountStore.getState().username) {
+    } else if (filter === 'userstories' && !accountStore.getState().username) {
       results = (
         <div className="no-results">
-          <h2><Router.Link to="login">Log In</Router.Link> or <Router.Link to="signup">Sign Up</Router.Link> to access your Docker Hub repositories.</h2>
+          <h2><Router.Link to="login">Log In</Router.Link> or <Router.Link to="signup">Sign Up</Router.Link> to access your Docker Hub storiesitories.</h2>
           <RetinaImage src="connect-art.png" checkIfRetinaImgExists={false}/>
         </div>
       );
       paginateResults = null;
-    } else if (filter === 'userrepos' && !accountStore.getState().verified) {
+    } else if (filter === 'userstories' && !accountStore.getState().verified) {
       let spinner = this.state.accountLoading ? <div className="spinner la-ball-clip-rotate la-dark"><div></div></div> : null;
       results = (
         <div className="no-results">
@@ -400,7 +403,7 @@ module.exports = React.createClass({
               <span className="results-filter results-filter-title">FILTER BY</span>
               <span className={`results-filter results-all tab ${filter === 'all' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'all')}>All</span>
               <span className={`results-filter results-recommended tab ${filter === 'recommended' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'recommended')}>Recommended</span>
-              <span className={`results-filter results-userrepos tab ${filter === 'userrepos' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userrepos')}>My Repos</span>
+              <span className={`results-filter results-userstories tab ${filter === 'userstories' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userstories')}>My Repos</span>
               <span className={`results-filter results-userimages tab ${filter === 'userimages' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userimages')}>My Images</span>
             </div>
           </div>
