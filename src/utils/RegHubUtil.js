@@ -130,6 +130,10 @@ module.exports = {
     });
   },
 
+  stories: function(){
+    return null
+  }
+
   // Returns the base64 encoded index token or null if no token exists
   repos: function (callback) {
     repositoryServerActions.reposLoading({repos: []});

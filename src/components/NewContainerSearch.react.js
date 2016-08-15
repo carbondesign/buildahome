@@ -6,8 +6,13 @@ import ImageCard from './ImageCard.react';
 import Promise from 'bluebird';
 import metrics from '../utils/MetricsUtil';
 import classNames from 'classnames';
+<<<<<<< HEAD
 import repositoryActions from '../actions/RepositoryActions';
 import repositoryStore from '../stores/RepositoryStore';
+=======
+import storiesActions from '../actions/StoriesActions';
+import storiesStore from '../stores/storiesStore';
+>>>>>>> master
 import accountStore from '../stores/AccountStore';
 import accountActions from '../actions/AccountActions';
 import imageActions from '../actions/ImageActions';
@@ -20,44 +25,49 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {
       query: '',
-      loading: repositoryStore.loading(),
-      repos: repositoryStore.all(),
+
+      loading: storiesStore.loading(),
+      stories: storiesStore.all(),
       images: imageStore.all(),
       imagesErr: imageStore.error,
       username: accountStore.getState().username,
       verified: accountStore.getState().verified,
       accountLoading: accountStore.getState().loading,
-      error: repositoryStore.getState().error,
-      currentPage: repositoryStore.getState().currentPage,
-      totalPage: repositoryStore.getState().totalPage,
-      previousPage: repositoryStore.getState().previousPage,
-      nextPage: repositoryStore.getState().nextPage
+
+      error: storiesStore.getState().error,
+      currentPage: storiesStore.getState().currentPage,
+      totalPage: storiesStore.getState().totalPage,
+      previousPage: storiesStore.getState().previousPage,
+      nextPage: storiesStore.getState().nextPage
     };
   },
   componentDidMount: function () {
     this.refs.searchInput.getDOMNode().focus();
-    repositoryStore.listen(this.update);
+
+    storiesStore.listen(this.update);
     accountStore.listen(this.updateAccount);
     imageStore.listen(this.updateImage);
-    repositoryActions.search();
+    storiesActions.search();
   },
   componentWillUnmount: function () {
     if (_searchPromise) {
       _searchPromise.cancel();
     }
 
-    repositoryStore.unlisten(this.update);
+
+    storiesStore.unlisten(this.update);
     accountStore.unlisten(this.updateAccount);
   },
   update: function () {
     this.setState({
-      loading: repositoryStore.loading(),
-      repos: repositoryStore.all(),
-      currentPage: repositoryStore.getState().currentPage,
-      totalPage: repositoryStore.getState().totalPage,
-      previousPage: repositoryStore.getState().previousPage,
-      nextPage: repositoryStore.getState().nextPage,
-      error: repositoryStore.getState().error
+
+      loading: storiesStore.loading(),
+      repos: storiesStore.all(),
+      currentPage: storiesStore.getState().currentPage,
+      totalPage: storiesStore.getState().totalPage,
+      previousPage: storiesStore.getState().previousPage,
+      nextPage: storiesStore.getState().nextPage,
+      error: storiesStore.getState().error
     });
   },
   updateImage: function (imgStore) {
@@ -98,7 +108,8 @@ module.exports = React.createClass({
     _searchPromise = Promise.delay(200).cancellable().then(() => {
       metrics.track('Searched for Images');
       _searchPromise = null;
-      repositoryActions.search(query, page);
+
+      storiesActions.search(query, page);
     }).catch(Promise.CancellationError, () => {});
   },
   handleChange: function (e) {
@@ -118,7 +129,8 @@ module.exports = React.createClass({
 
     // If we're clicking on the filter again - refresh
     if (filter === 'userrepos' && this.getQuery().filter === 'userrepos') {
-      repositoryActions.repos();
+
+      storiesActions.repos();
     }
 
     if (filter === 'userimages' && this.getQuery().filter === 'userimages') {
@@ -126,7 +138,8 @@ module.exports = React.createClass({
     }
 
     if (filter === 'recommended' && this.getQuery().filter === 'recommended') {
-      repositoryActions.recommended();
+
+      storiesActions.recommended();
     }
 
     this.transitionTo('search', {}, {filter: filter});
@@ -281,26 +294,44 @@ module.exports = React.createClass({
           </div>
         </div>
       );
+<<<<<<< HEAD
     } else if (repos.length) {
       let recommendedItems = repos.filter(repo => repo.is_recommended).map((image, index) => {
         const key = `rec-${image.name}-${index}`;
         return (<ImageCard key={key} image={image} />);
       });
       let otherItems = repos.filter(repo => !repo.is_recommended && !repo.is_user_repo).map((image, index) => {
+=======
+    } else if (stories.length) {
+      let recommendedItems = stories.filter(repo => repo.is_recommended).map((image, index) => {
+        const key = `rec-${image.name}-${index}`;
+        return (<ImageCard key={key} image={image} />);
+      });
+
+      let otherItems = stories.filter(repo => !repo.is_recommended && !repo.is_user_repo).map((image, index) => {
+>>>>>>> master
         const key = `other-${image.name}-${index}`;
         return (<ImageCard key={key} image={image} />);
       });
 
       let recommendedResults = recommendedItems.length ? (
         <div>
+<<<<<<< HEAD
           <h4>Recommended</h4>
+=======
+          <h4>Stories</h4>
+>>>>>>> master
           <div className="result-grid">
             {recommendedItems}
           </div>
         </div>
       ) : null;
 
+<<<<<<< HEAD
       let userRepoItems = repos.filter(repo => repo.is_user_repo).map((image, index) => {
+=======
+      let userRepoItems = stories.filter(repo => repo.is_user_repo).map((image, index) => {
+>>>>>>> master
         const key = `usr-${image.name}-${index}`;
         return (<ImageCard key={key} image={image} />);
       });

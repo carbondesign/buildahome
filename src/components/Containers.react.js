@@ -122,12 +122,7 @@ var Containers = React.createClass({
         <div className="containers-body">
           <div className="sidebar">
             <section className={sidebarHeaderClass}>
-              <h4>Containers</h4>
-              <div className="create">
-                <Router.Link to="search">
-                  <span className="btn btn-new btn-action has-icon btn-hollow"><span className="icon icon-add"></span>New</span>
-                </Router.Link>
-              </div>
+              <h4>Chapters</h4>
             </section>
             <section className="sidebar-containers" onScroll={this.handleScroll}>
               <ContainerList containers={this.state.sorted} newContainer={this.state.newContainer} />
