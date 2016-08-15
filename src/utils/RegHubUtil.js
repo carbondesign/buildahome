@@ -130,12 +130,198 @@ module.exports = {
     });
   },
 
-  stories: function(){
-    return null
-  }
+  // stories: function(){
+  //   var storyArray= [
+  //     {
+  //        "Id":"e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875",
+  //        "Created":"2016-08-14T18:27:01.998029487Z",
+  //        "Path":"/bin/sh",
+  //        "Args":[
+  //           "-c",
+  //           "npm run clean"
+  //        ],
+  //        "State":{
+  //           "Status":"exited",
+  //           "Running":false,
+  //           "Paused":false,
+  //           "Restarting":false,
+  //           "OOMKilled":false,
+  //           "Dead":false,
+  //           "Pid":0,
+  //           "ExitCode":0,
+  //           "Error":"",
+  //           "StartedAt":"2016-08-14T18:27:02.100951601Z",
+  //           "FinishedAt":"2016-08-14T18:27:02.407333561Z"
+  //        },
+  //        "Image":"sha256:b915620ec57fa0380a15da8f3c1a363bb6475d24bad3dabd35b757ae49a3f660",
+  //        "ResolvConfPath":"/mnt/sda1/var/lib/docker/containers/e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875/resolv.conf",
+  //        "HostnamePath":"/mnt/sda1/var/lib/docker/containers/e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875/hostname",
+  //        "HostsPath":"/mnt/sda1/var/lib/docker/containers/e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875/hosts",
+  //        "LogPath":"/mnt/sda1/var/lib/docker/containers/e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875/e5da88abf2827b24bc486275d0e9af785fc2208d5695de09ba9ca4bf136d2875-json.log",
+  //        "Name":"big_euler",
+  //        "RestartCount":0,
+  //        "Driver":"aufs",
+  //        "MountLabel":"",
+  //        "ProcessLabel":"",
+  //        "AppArmorProfile":"",
+  //        "ExecIDs":null,
+  //        "HostConfig":{
+  //           "Binds":null,
+  //           "ContainerIDFile":"",
+  //           "LogConfig":{
+  //              "Type":"json-file",
+  //              "Config":{
+
+  //              }
+  //           },
+  //           "NetworkMode":"default",
+  //           "PortBindings":null,
+  //           "RestartPolicy":{
+  //              "Name":"",
+  //              "MaximumRetryCount":0
+  //           },
+  //           "AutoRemove":false,
+  //           "VolumeDriver":"",
+  //           "VolumesFrom":null,
+  //           "CapAdd":null,
+  //           "CapDrop":null,
+  //           "Dns":[
+
+  //           ],
+  //           "DnsOptions":[
+
+  //           ],
+  //           "DnsSearch":[
+
+  //           ],
+  //           "ExtraHosts":null,
+  //           "GroupAdd":null,
+  //           "IpcMode":"",
+  //           "Cgroup":"",
+  //           "Links":null,
+  //           "OomScoreAdj":0,
+  //           "PidMode":"",
+  //           "Privileged":false,
+  //           "PublishAllPorts":false,
+  //           "ReadonlyRootfs":false,
+  //           "SecurityOpt":null,
+  //           "UTSMode":"",
+  //           "UsernsMode":"",
+  //           "ShmSize":67108864,
+  //           "Runtime":"runc",
+  //           "ConsoleSize":[
+  //              0,
+  //              0
+  //           ],
+  //           "Isolation":"",
+  //           "CpuShares":0,
+  //           "Memory":0,
+  //           "CgroupParent":"",
+  //           "BlkioWeight":0,
+  //           "BlkioWeightDevice":null,
+  //           "BlkioDeviceReadBps":null,
+  //           "BlkioDeviceWriteBps":null,
+  //           "BlkioDeviceReadIOps":null,
+  //           "BlkioDeviceWriteIOps":null,
+  //           "CpuPeriod":0,
+  //           "CpuQuota":0,
+  //           "CpusetCpus":"",
+  //           "CpusetMems":"",
+  //           "Devices":null,
+  //           "DiskQuota":0,
+  //           "KernelMemory":0,
+  //           "MemoryReservation":0,
+  //           "MemorySwap":0,
+  //           "MemorySwappiness":-1,
+  //           "OomKillDisable":false,
+  //           "PidsLimit":0,
+  //           "Ulimits":null,
+  //           "CpuCount":0,
+  //           "CpuPercent":0,
+  //           "IOMaximumIOps":0,
+  //           "IOMaximumBandwidth":0
+  //        },
+  //        "GraphDriver":{
+  //           "Name":"aufs",
+  //           "Data":null
+  //        },
+  //        "Mounts":[
+
+  //        ],
+  //        "Config":{
+  //           "Hostname":"e5c68db50333",
+  //           "Domainname":"",
+  //           "User":"",
+  //           "AttachStdin":false,
+  //           "AttachStdout":false,
+  //           "AttachStderr":false,
+  //           "Tty":false,
+  //           "OpenStdin":false,
+  //           "StdinOnce":false,
+  //           "Env":[
+  //              "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+  //              "NPM_CONFIG_LOGLEVEL=info",
+  //              "NODE_VERSION=4.3.2"
+  //           ],
+  //           "Cmd":[
+  //              "/bin/sh",
+  //              "-c",
+  //              "npm run clean"
+  //           ],
+  //           "ArgsEscaped":true,
+  //           "Image":"sha256:b915620ec57fa0380a15da8f3c1a363bb6475d24bad3dabd35b757ae49a3f660",
+  //           "Volumes":null,
+  //           "WorkingDir":"",
+  //           "Entrypoint":null,
+  //           "OnBuild":[
+
+  //           ],
+  //           "Labels":{
+
+  //           }
+  //        },
+  //        "NetworkSettings":{
+  //           "Bridge":"",
+  //           "SandboxID":"7475c35ba80b95a6b8751891e7ab7c34580d4b03823c0fdc7a07d8c1f5e33b19",
+  //           "HairpinMode":false,
+  //           "LinkLocalIPv6Address":"",
+  //           "LinkLocalIPv6PrefixLen":0,
+  //           "Ports":null,
+  //           "SandboxKey":"/var/run/docker/netns/7475c35ba80b",
+  //           "SecondaryIPAddresses":null,
+  //           "SecondaryIPv6Addresses":null,
+  //           "EndpointID":"",
+  //           "Gateway":"",
+  //           "GlobalIPv6Address":"",
+  //           "GlobalIPv6PrefixLen":0,
+  //           "IPAddress":"",
+  //           "IPPrefixLen":0,
+  //           "IPv6Gateway":"",
+  //           "MacAddress":"",
+  //           "Networks":{
+  //              "bridge":{
+  //                 "IPAMConfig":null,
+  //                 "Links":null,
+  //                 "Aliases":null,
+  //                 "NetworkID":"dadcbbee361872e0bc1837b194b516fd050f7acb0c9e346a8c93dae8eb8a9e95",
+  //                 "EndpointID":"",
+  //                 "Gateway":"",
+  //                 "IPAddress":"",
+  //                 "IPPrefixLen":0,
+  //                 "IPv6Gateway":"",
+  //                 "GlobalIPv6Address":"",
+  //                 "GlobalIPv6PrefixLen":0,
+  //                 "MacAddress":""
+  //              }
+  //           }
+  //        }
+  //     }
+  //   ]
+  //   return storyArray
+  // },
 
   // Returns the base64 encoded index token or null if no token exists
-  repos: function (callback) {
+  stories: function (callback) {
     repositoryServerActions.reposLoading({repos: []});
     let namespaces = [];
     // Get Orgs for user

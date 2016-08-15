@@ -6,13 +6,9 @@ import ImageCard from './ImageCard.react';
 import Promise from 'bluebird';
 import metrics from '../utils/MetricsUtil';
 import classNames from 'classnames';
-<<<<<<< HEAD
-import repositoryActions from '../actions/RepositoryActions';
-import repositoryStore from '../stores/RepositoryStore';
-=======
+
 import storiesActions from '../actions/StoriesActions';
 import storiesStore from '../stores/storiesStore';
->>>>>>> master
 import accountStore from '../stores/AccountStore';
 import accountActions from '../actions/AccountActions';
 import imageActions from '../actions/ImageActions';
@@ -294,14 +290,7 @@ module.exports = React.createClass({
           </div>
         </div>
       );
-<<<<<<< HEAD
-    } else if (repos.length) {
-      let recommendedItems = repos.filter(repo => repo.is_recommended).map((image, index) => {
-        const key = `rec-${image.name}-${index}`;
-        return (<ImageCard key={key} image={image} />);
-      });
-      let otherItems = repos.filter(repo => !repo.is_recommended && !repo.is_user_repo).map((image, index) => {
-=======
+
     } else if (stories.length) {
       let recommendedItems = stories.filter(repo => repo.is_recommended).map((image, index) => {
         const key = `rec-${image.name}-${index}`;
@@ -309,29 +298,21 @@ module.exports = React.createClass({
       });
 
       let otherItems = stories.filter(repo => !repo.is_recommended && !repo.is_user_repo).map((image, index) => {
->>>>>>> master
         const key = `other-${image.name}-${index}`;
         return (<ImageCard key={key} image={image} />);
       });
 
       let recommendedResults = recommendedItems.length ? (
         <div>
-<<<<<<< HEAD
-          <h4>Recommended</h4>
-=======
+
           <h4>Stories</h4>
->>>>>>> master
           <div className="result-grid">
             {recommendedItems}
           </div>
         </div>
       ) : null;
 
-<<<<<<< HEAD
-      let userRepoItems = repos.filter(repo => repo.is_user_repo).map((image, index) => {
-=======
       let userRepoItems = stories.filter(repo => repo.is_user_repo).map((image, index) => {
->>>>>>> master
         const key = `usr-${image.name}-${index}`;
         return (<ImageCard key={key} image={image} />);
       });

@@ -18,16 +18,16 @@ import hub from './utils/HubUtil';
 import Router from 'react-router';
 import routes from './routes';
 import routerContainer from './router';
-import repositoryActions from './actions/RepositoryActions';
+import storiesActions from './actions/StoriesActions';
 import machine from './utils/DockerMachineUtil';
 
 hubUtil.init();
 
 if (hubUtil.loggedin()) {
-  repositoryActions.repos();
+  storiesActions.stories();
 }
 
-repositoryActions.recommended();
+storiesActions.recommended();
 
 webUtil.addWindowSizeSaving();
 webUtil.addLiveReload();
